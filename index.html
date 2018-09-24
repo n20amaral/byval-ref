@@ -1,0 +1,269 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/white.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<header>
+						<h2 style="color:red;">Pass by Value/Reference</h1>
+						<h3 style="font-size:1em;">Nuno Amaral @ #19_hashtronauts</h2>
+					</header>
+					<br />
+					<p>Follow me on your screen:<br />
+						<a href="https://n20amaral.github.io/byval-ref">n20amaral.github.io/byval-ref</a>
+					</p>
+					<br />
+					<img style="border:0; box-shadow: 0 0 0" src="img/logoac.png" />
+				</section>
+				<section>
+					<header style="color:red;text-transform:uppercase;">The Problem</header>
+					<section>
+						<p>Meet Hector</p>
+						<img class="fragment" src="img/pre-hector.jpg" />
+					</section>
+					<section>
+						<p>Hector has an hearing disability.</p>
+						<img src="img/hector.jpg" />
+						<p>He hears louder on his right side than his left side.</p>
+					</section>
+					<section>
+						<p>Hector boughts a special sound system to solve his problem, but it was badly wired from the backside.</p>
+						<img src="img/soundsystem.jpg" />
+						<p>Now we need to fix it for him, by software</p>
+					</section>
+				</section>
+				<section>
+					<header style="color:red;text-transform:uppercase;">The solution (pseudocode)</header>
+					<section>
+						<p>The stereo has these predefined values for the volume level of each speaker:</p>
+						<pre><code>int left = 30;
+int right = 70;</code></pre>
+						<p>How can we solve this?</p>
+					</section>
+					<section>
+						<p>The most simple solution can be done in 3 steps</p>
+						<hr style="visibility: hidden;" />
+						<hr style="visibility: hidden;" />
+						<ol>
+							<li class="fragment">save the <strong>left</strong> value to a <strong>temp</strong> variable</li>
+							<li class="fragment">modify the <strong>left</strong> value to the value of <strong>right</strong></li>
+							<li class="fragment">modify the <strong>right</strong> value with the value in <strong>temp</strong> variable</li>
+						</ol>
+					</section>
+				</section>
+				<section>
+					<section>
+							<h4>(DEMO)</h4>
+							<h6>Using a simple swap algoritm</h6>
+					</section>
+					<section>
+<pre>Main.java<code style="font-size:0.9em;">package org.academiadecodigo.bootcamp;
+public class Main {
+	public static void main(String[] args) {
+
+		int left = 30;
+		int right = 70;
+
+	}
+}</code></pre>
+					</section>
+					<section>
+<pre>Main.java<code style="font-size:0.9em;">package org.academiadecodigo.bootcamp;
+public class Main {
+	public static void main(String[] args) {
+		int left = 30;
+		int right = 70;
+
+		int temp = left;
+		left = right;
+		right = temp;
+
+		System.out.println("left: " + left + " right: " + right);
+	}
+}</code></pre>
+						<pre>> left: 70 right: 30</pre>
+						<p>ALLRIGHT!!!!</p>
+					</section>
+				</section>
+				<section>
+					<header style="color:red;text-transform:uppercase;">Pimp our code</header>
+					<section>
+						<br />
+						<p>Now we are badass developers, we don't want this simple, basic and 100% functional code.</p>
+						<div class="fragment">
+							<img src="img/pimpmycode.jpg" />
+							<p>So let's pimp our code</p>
+						</div>
+					</section>
+				</section>
+				<section>
+					<section>
+							<h4>(DEMO)</h4>
+							<h6>Using a helper class</h6>
+					</section>
+					<section>
+<pre>Main.java<code style="font-size:0.9em;">package org.academiadecodigo.bootcamp;
+public class Main {
+	public static void main(String[] args) {
+		int left = 30;
+		int right = 70;
+
+		int temp = left;
+		left = right;
+		right = temp;
+
+		System.out.println("left: " + left + " right: " + right);
+	}
+}</code></pre>
+						<pre>> left: 70 right: 30</pre>
+					</section>
+					<section>
+<pre>SwapHelper.java<code style="font-size:0.8em; line-height: 1.2em;">package org.academiadecodigo.bootcamp;
+public class SwapHelper {
+	public static void swapValues(int left, int right) {
+		int temp = left;
+		left = right;
+		right = temp;
+		System.out.println("left: " + left + " right: " + right);
+	}
+}</code></pre>
+<pre>Main.java<code style="font-size:0.8em; line-height: 1.2em;">package org.academiadecodigo.bootcamp;
+public class Main {
+	public static void main(String[] args) {
+		int left = 30;
+		int right = 70;
+		
+		SwapHelper.swapValues(left, right);
+	}
+}</code></pre>
+						<pre>> left: 70 right: 30</pre>
+					</section>
+					<section>
+<pre>SwapHelper.java<code style="font-size:0.8em; line-height: 1.2em;">package org.academiadecodigo.bootcamp;
+public class SwapHelper {
+	public static void swapValues(int left, int right) {
+		int temp = left;
+		left = right;
+		right = temp;
+	}
+}</code></pre>
+<pre>Main.java<code style="font-size:0.8em; line-height: 1.2em;">package org.academiadecodigo.bootcamp;
+public class Main {
+	public static void main(String[] args) {
+		int left = 30;
+		int right = 70;
+		
+		SwapHelper.swapValues(left, right);
+		System.out.println("left: " + left + " right: " + right);
+	}
+}</code></pre>
+						<pre>> left: 30 right: 70</pre>
+						<p>WTF!?!??!?</p>
+					</section>
+				</section>
+				<section>
+					<section>Why this isn't working?</section>
+					<section>Because every parameter in Java code is passed by value.</section>
+					<section>(graphic explanation)</section>
+				</section>
+				<section>
+					<section>
+						<p>Maybe we aren't being badass enough.</p>
+						<img class="fragment" style="border:0;box-shadow: 0 0 0;" src="img/badass.jpg" />
+					</section>
+					<section>Let's try a different approach and use a reference type</section>
+				</section>
+				<section>
+					<section>
+						<h4>(DEMO)</h4>
+						<h6>Using a reference type</h6>
+					</section>
+					<section>
+<pre>Stereo.java<code style="font-size:0.7em; line-height: 1.1em;">package org.academiadecodigo.bootcamp;
+public class Stereo {
+	public int left = 30;
+	public int right = 70;
+	public void printVolume() {
+		System.out.println("left: " + left + " right: " + right);
+	}
+}</code></pre>
+<pre>SwapHelper.java<code style="font-size:0.7em; line-height: 1.1em;">package org.academiadecodigo.bootcamp;
+public class SwapHelper {
+	public static void swapValues(Stereo stereo) {
+		int temp = stereo.left;
+		stereo.left = stereo.right;
+		stereo.right = stereo.temp;
+	}
+}</code></pre>
+<pre>Main.java<code style="font-size:0.7em; line-height: 1.1em;">package org.academiadecodigo.bootcamp;
+public class Main {
+	public static void main(String[] args) {
+		Stereo stero = new Stereo();
+		stereo.printVolume();
+	}
+}</code></pre>
+						<pre>> left: 30 right: 70</pre>
+					</section>
+					<section>
+<pre>Stereo.java<code style="font-size:0.7em; line-height: 1.1em;">package org.academiadecodigo.bootcamp;
+public class Stereo {
+	public int left = 30;
+	public int right = 70;
+	public void printVolume() {
+		System.out.println("left: " + left + " right: " + right);
+	}
+}</code></pre>
+<pre>SwapHelper.java<code style="font-size:0.7em; line-height: 1.1em;">package org.academiadecodigo.bootcamp;
+public class SwapHelper {
+	public static void swapValues(Stereo stereo) {
+		int temp = stereo.left;
+		stereo.left = stereo.right;
+		stereo.right = stereo.temp;
+	}
+}</code></pre>
+<pre>Main.java<code style="font-size:0.7em; line-height: 1.1em;">package org.academiadecodigo.bootcamp;
+public class Main {
+	public static void main(String[] args) {
+		Stereo stero = new Stereo();
+		SwapHelper.swapValues(stereo);
+		stereo.printVolume();
+	}
+}</code></pre>
+						<pre>> left: 70 right: 30</pre>
+					</section>
+				</section>
+				<section>
+					<section>If every parameter in Java is passed by value,<br />why this code works?</section>
+					<section>(graphical explanation)</section>
+				</section>
+				<section>Conclusion</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script src="config.js"></script>
+	</body>
+</html>
