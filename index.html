@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>Pass by Value/Reference - Homework</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/white.css">
@@ -239,13 +239,13 @@ public class SwapHelper {
 	public static void swapValues(Stereo stereo) {
 		int temp = stereo.left;
 		stereo.left = stereo.right;
-		stereo.right = stereo.temp;
+		stereo.right = temp;
 	}
 }</code></pre>
 <pre>Main.java<code style="font-size:0.7em; line-height: 1.1em;">package org.academiadecodigo.bootcamp;
 public class Main {
 	public static void main(String[] args) {
-		Stereo stero = new Stereo();
+		Stereo stereo = new Stereo();
 		SwapHelper.swapValues(stereo);
 		stereo.printVolume();
 	}
@@ -260,10 +260,10 @@ public class Main {
 				<section>
 					<header style="color:red;text-transform:uppercase;">Always rember this</header>
 					<div class="fragment" style="text-align: left">
-						<span>In java everything is passed by value </span><br /><img style="display:inline" src="img/twinsbyval.jpg" />
+						<span>In Java everything is passed by value </span><br /><img style="display:inline" src="img/twinsbyval.jpg" />
 					</div>
 					<div class="fragment" style="text-align: right">
-						<span>and <u>NOT</u> by reference </span><br /><img style="display:inline" src="img/twinsbyref.jpg" />
+						<span>and <u>NOT</u> by reference.</span><br /><img style="display:inline" src="img/twinsbyref.jpg" />
 					</div>
 				</section>
 			</div>
