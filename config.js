@@ -3,7 +3,7 @@
 			// - https://github.com/hakimel/reveal.js#dependencies
 			Reveal.initialize({
 				controls: false,
-				keyboard: false,
+				keyboard: true,
 				multiplex: {
 					// Example values. To generate your own, see the socket.io server instructions.
 					secret: null, // null so the clients do not have control of the master presentation
