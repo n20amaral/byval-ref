@@ -48,7 +48,7 @@
 						<p>He hears louder on his right side than his left side.</p>
 					</section>
 					<section>
-						<p>Hector boughts a special sound system to solve his problem, but it was badly wired from the backside.</p>
+						<p>Hector boughts a special stereo sound system to solve his problem, but it was badly wired from the backside.</p>
 						<img src="img/soundsystem.jpg" />
 						<p>Now we need to fix it for him, by software</p>
 					</section>
@@ -213,13 +213,13 @@ public class SwapHelper {
 	public static void swapValues(Stereo stereo) {
 		int temp = stereo.left;
 		stereo.left = stereo.right;
-		stereo.right = stereo.temp;
+		stereo.right = temp;
 	}
 }</code></pre>
 <pre>Main.java<code style="font-size:0.7em; line-height: 1.1em;">package org.academiadecodigo.bootcamp;
 public class Main {
 	public static void main(String[] args) {
-		Stereo stero = new Stereo();
+		Stereo stereo = new Stereo();
 		stereo.printVolume();
 	}
 }</code></pre>
